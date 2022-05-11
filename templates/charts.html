@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <script src="static/assets/js/echarts.min.js"></script>
+  <title>Tea | Data Analysis</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="static/assets/img/favicon.png" rel="icon">
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <div class="logo me-auto">
+        <h1><a>TEA</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="temp.html"><img src="static/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="index">首页</a></li>
+          <li><a class="nav-link scrollto" href="/tea">茶饮</a></li>
+          <li><a class="nav-link scrollto" href="/milk">奶茶</a></li>
+          <li><a class="nav-link scrollto" href="/score">分析</a></li>
+          <li><a class="nav-link scrollto" href="/word">词云</a></li>
+          <li><a class="nav-link scrollto" href="/team">推荐</a></li>
+          <li><a class="nav-link scrollto active" href="/">退出</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+  <!-- ======= Our Team Section ======= -->
+    <section id="team" class="team">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>数据可视化</h2>
+        </div>
+
+        <!-- ======= Counts Section ======= -->
+    <section class="counts section-bg">
+      <div class="container">
+
+        <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+        <div id="main" style="width: 100%;height:300px;"></div>
+        <div id="main1" style="width: 100%;height:500px;"></div>
+        <div id="main2" style="width: 100%;height:500px;"></div>
+        <div id="main3" style="width: 100%;height:500px;"></div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+      </div>
+    </section><!-- End Our Team Section -->
+
+    <script type="text/javascript">
+        window.onload = function () {
+            echart01();
+            echart02();
+            echart03();
+            echart04();
+            function echart01(){
+                var dom = document.getElementById("main");
+                var myChart = echarts.init(dom);
+                var app = {};
+                option = null;
+                option = {
+                    title: {
+                    text: '茶饮店铺区域数量分布图'
+                },
+                    color:['#3398DB'],
+                    tooltip: {
+                            trigger: 'axis'
+                        },
+                        grid: {
+                        left:'3%',
+                        right:'3%',
+                        bottom:'3%',
+                        containLabel:true
+                    },
+                    xAxis: {
+                        axisTick: {
+                            show: false,
+                        },
+                        axisLabel: {
+                            rotate: 28
+                        },
+                        type: 'category',
+                        data:{{ score|tojson }}
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        data:{{ num }},
+                        barWidth:'60%',
+                        type: 'bar',
+                    }]
+                };
+                ;
+                if (option && typeof option === "object") {
+                    myChart.setOption(option, true);
+                }}
+            function echart02(){
+                var dom = document.getElementById("main1");
+                var myChart = echarts.init(dom);
+                var app = {};
+                option = null;
+                option = {
+                    title: {
+                    text: '茶饮店铺评论数TOP20'
+                },
+                    color:['#3398DB'],
+                    tooltip: {
+                            trigger: 'axis'
+                        },
+                        grid: {
+                        left:'3%',
+                        right:'3%',
+                        bottom:'3%',
+                        containLabel:true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        axisTick: {
+                            show: false,
+                        },
+                        axisLabel: {
+                            rotate: 28
+                        },
+                        data:{{ score1|tojson }}
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        data:{{ num1 }},
+                        barWidth:'60%',
+                        type: 'bar',
+                    }]
+                };
+                ;
+                if (option && typeof option === "object") {
+                    myChart.setOption(option, true);
+                }}
+            function echart03(){
+                var dom = document.getElementById("main2");
+                var myChart = echarts.init(dom);
+                var app = {};
+                option = null;
+                option = {
+                    title: {
+                    text: '奶茶店铺区域数量分布图'
+                },
+                    color:['#3398DB'],
+                    tooltip: {
+                            trigger: 'axis'
+                        },
+                        grid: {
+                        left:'3%',
+                        right:'3%',
+                        bottom:'3%',
+                        containLabel:true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        axisTick: {
+                            show: false,
+                        },
+                        axisLabel: {
+                            rotate: 28
+                        },
+                        data:{{ score2|tojson }}
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        data:{{ num2 }},
+                        barWidth:'60%',
+                        type: 'bar',
+                    }]
+                };
+                ;
+                if (option && typeof option === "object") {
+                    myChart.setOption(option, true);
+                }}
+            function echart04(){
+                var dom = document.getElementById("main3");
+                var myChart = echarts.init(dom);
+                var app = {};
+                option = null;
+                option = {
+                    title: {
+                    text: '奶茶店铺评论数TOP20'
+                },
+                    color:['#3398DB'],
+                    tooltip: {
+                            trigger: 'axis'
+                        },
+                        grid: {
+                        left:'3%',
+                        right:'3%',
+                        bottom:'3%',
+                        containLabel:true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        axisTick: {
+                            show: false,
+                        },
+                        axisLabel: {
+                            rotate: 28
+                        },
+                        data:{{ score3|tojson }}
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        data:{{ num3 }},
+                        barWidth:'60%',
+                        type: 'bar',
+                    }]
+                };
+                ;
+                if (option && typeof option === "object") {
+                    myChart.setOption(option, true);
+                }}
+        }
+       </script>
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>TEA</span></strong> All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed by <a href="https://sh.meituan.com/" target="_blank">Nico</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="static/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="static/assets/vendor/aos/aos.js"></script>
+  <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="static/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="static/assets/js/main.js"></script>
+
+</body>
+
+</html>

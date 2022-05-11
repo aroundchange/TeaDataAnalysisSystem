@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+    Tea | Data Analysis
+{% endblock %}
+{% block head %}
+    <style>
+        #body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            width: 300px;
+            height: 750px;
+            color: #0a53be
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div id="body">
+     <form action="{{ url_for('login') }}" method="post">
+        <h1 align="center">登录</h1>
+        <p><input type="text" name="username" placeholder="用户名"></p>
+        <p><input type="password" name="password" placeholder="密码"></p>
+        <p style="color: red">{{ msg }}</p>
+        <p align="center"><input type="submit" value="登录"></p>
+    </form>
+    </div>
+{% endblock %}

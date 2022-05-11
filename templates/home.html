@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Tea | Data Analysis{% endblock %}
+
+{% block header %}
+
+    <div id="header" class="content-block header-wrapper">
+        <div class="header-wrapper-inner">
+            <section class="center">
+                <div class="slogan">
+                    Tea &amp; Data Analysis
+                </div>
+            </section>
+            <section class="center">
+                <div class="center">
+                    <p><a class="logo" href="{{ url_for('login')}}">登录</a></p>
+                    <p><a class="logo" href="{{ url_for('register') }}">注册</a></p>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

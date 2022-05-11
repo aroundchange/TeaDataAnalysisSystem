@@ -1,0 +1,35 @@
+body {
+    background: #101e2a;
+}
+
+.movie-page {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.movie-title {
+    text-align: center;
+}
+
+.caption {
+    text-align: center;
+}
+
+img.movie-avatar{
+    width: 587px;
+    height: 336px;
+}
+
+.page-footer {
+    text-align: center;
+}
+
+.header-logo {
+    margin-top: 10px;
+    margin-left: 10px;
+}
